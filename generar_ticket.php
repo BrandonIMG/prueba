@@ -1,5 +1,5 @@
 <?php 
-function Ticket($rfc,$nombre,$correo,$pago,$direccion,$descripcion,$iva,$descuento,$total,$fecha){
+function  Ticket($id,$fecha,$nombre,$rfc,$direccion,$nombre_c,$rfc_c,$correo,$cantidad,$descripcion,$importe,$descuento,$iva,$total,$pago){
     require('fpdf.php');
 
     class PDF extends FPDF
@@ -8,13 +8,13 @@ function Ticket($rfc,$nombre,$correo,$pago,$direccion,$descripcion,$iva,$descuen
     function Header()
     {
         // Logo
-        $this->Image('img/logo.png',10,8,33);
+        $this->Image('img/logo.png',15,8,55);
         // Arial bold 15
         $this->SetFont('Arial','B',15);
         // Movernos a la derecha
         $this->Cell(80);
         // Título
-        $this->Cell(100,10,utf8_decode('FACTURA ELECTRÓNICA (CFDI)'),1,0,'C');
+        $this->Cell(90,10,utf8_decode('FACTURA ELECTRÓNICA (CFDI)'),1,1,'C');
         // Salto de línea
         $this->Ln(20);
     }
@@ -39,49 +39,57 @@ function Ticket($rfc,$nombre,$correo,$pago,$direccion,$descripcion,$iva,$descuen
 
     /** Llenar la factura con los datos de la base de datos*/
 
+    $pdf->MultiCell(0,15,"");
+    $pdf->Cell(45,10,utf8_decode('Numero de Factura'),1,0,'C');
+    $pdf->Cell(50,10,$id,1,0,'C',0);
+    $pdf->Cell(45,10,utf8_decode('Fecha de emisión'),1,0,'C');
+    $pdf->Cell(50,10,$fecha,1,0,'C',0);
 
     
-   
+    $pdf->MultiCell(0,15,"");
+    $pdf->Cell(45,10,utf8_decode('Nombre Emisor'),1,0,'C');
+    $pdf->Cell(90,10,$nombre,1,1,'C',0);
+    $pdf->Cell(45,10,utf8_decode('RFC Emisor'),1,0,'C');
+    $pdf->Cell(90,10,$rfc,1,1,'C',0);
+    $pdf->Cell(45,10,utf8_decode('Dirección Emisor'),1,0,'C');
+    $pdf->Cell(90,10,$direccion,1,1,'C',0);
 
-        
-        $pdf->Cell(45,10,utf8_decode('RFC Receptor'),1,0,'C');
-        $pdf->Cell(50,10,$rfc,1,0,'C',0);
-        $pdf->Cell(45,10,utf8_decode('Nombre'),1,0,'C');
-        $pdf->Cell(50,10,$nombre,1,1,'C',0);
-        $pdf->Cell(45,10,utf8_decode('Correo Electrónico'),1,0,'C');
-        $pdf->Cell(150,10,$correo,1,1,'C',0);
-        $pdf->Cell(45,10,utf8_decode('Dirección'),1,0,'C');
-        $pdf->Cell(150,10,utf8_decode($direccion),1,0,'C',0);
-        
-        
-        $pdf->MultiCell(0,15,"");
-
-        $pdf->Cell(45,10,utf8_decode('Fecha de emisión'),1,0,'C');
-        $pdf->Cell(90,10,$fecha,1,1,'C',0);
-        
+    $pdf->MultiCell(0,15,"");
+    $pdf->Cell(45,10,utf8_decode('Nombre Cliente'),1,0,'C');
+    $pdf->Cell(90,10,$nombre_c,1,1,'C',0);
+    $pdf->Cell(45,10,utf8_decode('RFC Cliente'),1,0,'C');
+    $pdf->Cell(90,10,$rfc_c,1,1,'C',0);
+    $pdf->Cell(45,10,utf8_decode('Correo Cliente'),1,0,'C');
+    $pdf->Cell(90,10,$correo,1,1,'C',0);
 
         $pdf->MultiCell(0,15,"");
 
-     
-        $pdf->Cell(75,10,utf8_decode('Descripción'),1,1,'C');
-        $pdf->Cell(75,10,utf8_decode($descripcion),1,1,'C',0);
-        $pdf->Cell(30,10,utf8_decode('IVA'),1,0,'C');
-        $pdf->Cell(30,10,$iva,1,1,'C',0);
-        $pdf->Cell(30,10,utf8_decode('Descuento'),1,0,'C');
-        $pdf->Cell(30,10,$descuento,1,1,'C',0);
-        $pdf->Cell(30,10,utf8_decode('Total'),1,0,'C');
-        $pdf->Cell(30,10,$total,1,1,'C',0);
+        $pdf->Cell(50,10,utf8_decode('Cantidad'),1,0,'C');
+        $pdf->Cell(75,10,utf8_decode('Descripción'),1,0,'C');
+        $pdf->Cell(50,10,utf8_decode('Importe'),1,1,'C',0);
+    
+      
+        $pdf->Cell(50,10,$cantidad,1,0,'C');
+        $pdf->Cell(75,10,$descripcion,1,0,'C');
+        $pdf->Cell(50,10,$importe,1,1,'C');
 
-       
-     
-        
-        
-
+        $pdf->Cell(125,10,utf8_encode("Descuento $"),1,0,'C');
+        $pdf->Cell(50,10,$descuento,1,1,'C',0);
+    
+        $pdf->Cell(125,10,utf8_encode("IVA $"),1,0,'C');
+        $pdf->Cell(50,10,$iva,1,1,'C',0);
+    
+        $pdf->Cell(125,10,utf8_encode("Total a Pagar $"),1,0,'C');
+        $pdf->Cell(50,10,$total,1,1,'C',0);
 
         $pdf->MultiCell(0,15,"");
 
         $pdf->Cell(30,10,utf8_encode('Metodo de pago'),1,0,'C');
         $pdf->Cell(90,10,$pago,1,1,'C',0);
+        
+      
+        
+       
       
 
         $pdf->Output();

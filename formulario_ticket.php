@@ -52,41 +52,73 @@
     <h2>Generar el ticket</h2>
         <form action="ticket.php" method="POST" class="container">
             <legend>Ingrese sus datos para facturar</legend>
+
             <div class="form-group">
-                <label for="rfc">RFC</label>
-                <input type="text" name="rfc" id="rfc" class="form-control" placeholder="RFC">
+                <label for="id">Numero de factura</label>
+                <input type="text" name="id" id="id" class="form-control" placeholder="Num de Factura" required>
             </div>
             <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre">
+                <label for="fecha">Fecha de Emisión</label>
+                <input type="date" name="fecha" id="fecha" class="form-control" placeholder="Fecha" required>
+            </div>
+
+            <!-- DATOS DEL EMISOR-->
+            <div class="form-group">
+                <label for="nombre">Nombre del Emisor</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre del Emisor" required >
             </div>
             <div class="form-group">
-                <label for="mail">Correo electrónico</label>
-                <input type="mail" name="mail" id="mail" class="form-control" placeholder="Correo electrónico">
+                <label for="rfc">RFC del Emisor</label>
+                <input type="text" name="rfc" id="rfc" class="form-control" placeholder="RFC del Emisor"required>
             </div>
             <div class="form-group">
-                <label for="pago">Forma de Pago</label>
-                <input type="text" name="pago" id="pago" class="form-control" placeholder="Forma de Pago">
+                <label for="address">Dirección del Emisor</label>
+                <input type="text" name="address" id="adress" class="form-control" placeholder="Direccion del Emisor" required>
+            </div>
+            
+             <!--DATOS DEL CLIENTE -->
+             <div class="form-group">
+                <label for="nombre_c">Nombre del Cliente</label>
+                <input type="text" name="nombre_c" id="nombre_c" class="form-control" placeholder="Nombre del cliente" required>
             </div>
             <div class="form-group">
-                <label for="address">Dirección</label>
-                <input type="text" name="address" id="adress" class="form-control" placeholder="Direccion">
+                <label for="rfc_c">RFC del Cliente</label>
+                <input type="text" name="rfc_c" id="rfc_c" class="form-control" placeholder="RFC del Cliente"required>
+            </div>
+            <div class="form-group">
+                <label for="mail">Correo electrónico del cliente</label>
+                <input type="mail" name="mail" id="mail" class="form-control" placeholder="Correo electrónico del Cliente"required>
+            </div>
+            
+             <!--DATOS DEL PRODUCTO -->
+             <div class="form-group">
+                <label for="cantidad">Cantidad de Producto(s)</label>
+                <input type="number" name="cantidad" id="cantidad" class="form-control" placeholder="Cantidad" required>
             </div>
             <div class="form-group">
                 <label for="descripcion">Descripción</label>
-                <textarea name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripcion de producto" class="form-control"></textarea>
+                <textarea name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripcion de producto" class="form-control" required></textarea>
             </div>
             <div class="form-group">
-                <label for="iva">IVA</label>
-                <input type="number" name="iva" id="iva" class="form-control" placeholder="IVA">
+                <label for="importe">Importe</label>
+                <input type="number" name="importe" id="importe" class="form-control" placeholder="Importe" required>
             </div>
             <div class="form-group">
                 <label for="descuento">Descuento</label>
-                <input type="number" name="descuento" id="descuento" class="form-control" placeholder="Descuento">
+                <input type="number" name="descuento" id="descuento" class="form-control" placeholder="Descuento" required>
             </div>
             <div class="form-group">
+                <label for="iva">IVA</label>
+                <input type="number" name="iva" id="iva" class="form-control" placeholder="IVA" required>
+            </div>
+
+            <div class="form-group">
                 <label for="total">Total</label>
-                <input type="number" name="total" id="total" class="form-control" placeholder="Total">
+                <input type="number" name="total" id="total" class="form-control" placeholder="Total" required>
+            </div>
+            <div class="form-group">
+                <label for="pago">Forma de Pago</label>
+                <input type="text" name="pago" id="pago" class="form-control" placeholder="Forma de Pago" required>
             </div>
 
             <input type="submit" value="Generar" class="btn btn-primary justify-item-end">
