@@ -48,7 +48,7 @@ function  Ticket($id,$fecha,$nombre,$rfc,$direccion,$nombre_c,$rfc_c,$correo,$ca
     
     $pdf->MultiCell(0,15,"");
     $pdf->Cell(45,10,utf8_decode('Nombre Emisor'),1,0,'C');
-    $pdf->Cell(90,10,$nombre,1,1,'C',0);
+    $pdf->Cell(90,10,utf8_decode($nombre),1,1,'C',0);
     $pdf->Cell(45,10,utf8_decode('RFC Emisor'),1,0,'C');
     $pdf->Cell(90,10,$rfc,1,1,'C',0);
     $pdf->Cell(45,10,utf8_decode('Dirección Emisor'),1,0,'C');
@@ -56,7 +56,7 @@ function  Ticket($id,$fecha,$nombre,$rfc,$direccion,$nombre_c,$rfc_c,$correo,$ca
 
     $pdf->MultiCell(0,15,"");
     $pdf->Cell(45,10,utf8_decode('Nombre Cliente'),1,0,'C');
-    $pdf->Cell(90,10,$nombre_c,1,1,'C',0);
+    $pdf->Cell(90,10,utf8_decode($nombre_c),1,1,'C',0);
     $pdf->Cell(45,10,utf8_decode('RFC Cliente'),1,0,'C');
     $pdf->Cell(90,10,$rfc_c,1,1,'C',0);
     $pdf->Cell(45,10,utf8_decode('Correo Cliente'),1,0,'C');
